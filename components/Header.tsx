@@ -1,17 +1,16 @@
 /* This example requires Tailwind CSS v2.0+ */
 import { CalendarIcon, ChartBarIcon, FolderIcon, HomeIcon, InboxIcon, UsersIcon } from '@heroicons/react/24/outline'
-import { useSession } from 'next-auth/react';
+import { getSession, useSession } from 'next-auth/react';
 import Link from 'next/link'
+import Image from 'next/image'
 import { useRouter } from 'next/router';
-import { useEffect } from 'react';
+import { NextResponse } from 'next/server'
+import type { NextRequest } from 'next/server'
+import Logo from "../public/logo-ipfdd-big.jpg"
 
 const navigation = [
-  { name: 'Dashboard', icon: HomeIcon, href: '#', current: true },
-  { name: 'Team', icon: UsersIcon, href: '#', current: false },
-  { name: 'Projects', icon: FolderIcon, href: '#', current: false },
-  { name: 'Calendar', icon: CalendarIcon, href: '#', current: false },
-  { name: 'Documents', icon: InboxIcon, href: '#', current: false },
-  { name: 'Reports', icon: ChartBarIcon, href: '#', current: false },
+  { name: 'Übersicht', icon: HomeIcon, href: '/' },
+  { name: 'Team', icon: UsersIcon, href: '/'},
 ]
 
 function classNames(...classes) {
@@ -21,25 +20,10 @@ function classNames(...classes) {
 export default function Header() {
   const router = useRouter();
 
-  const isActive: (pathname: string) => boolean = (pathname) =>
-    router.pathname === pathname;
-
-  const { data: session, status } = useSession();
-
-  useEffect(() => {
-    if (!session) {
-      router.push("/api/auth/signin")
-    }
-  });
-
   return (
     <div className="flex flex-col flex-grow border-r border-gray-200 pt-5 pb-4 bg-white overflow-y-auto h-screen">
       <div className="flex items-center flex-shrink-0 px-4 space-y-5">
-        <img
-          className="h-8 w-auto"
-          src="https://tailwindui.com/img/logos/workflow-logo-primary-600-mark-gray-800-text.svg"
-          alt="Workflow"
-        />
+        <Image src={Logo} alt={''} />
       </div>
       <div className="mt-5 flex-grow flex flex-col">
         <nav className="flex-1 bg-white space-y-1" aria-label="Sidebar">
@@ -48,7 +32,7 @@ export default function Header() {
               key={item.name}
               href={item.href}
               className={classNames(
-                item.current
+                router.pathname === item.href
                   ? 'bg-indigo-50 border-primary-600 text-primary-600'
                   : 'border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900',
                 'group flex items-center px-3 py-2 text-sm font-medium border-l-4'
@@ -56,7 +40,7 @@ export default function Header() {
             >
               <item.icon
                 className={classNames(
-                  item.current ? 'text-primary-500' : 'text-gray-400 group-hover:text-gray-500',
+                  router.pathname === item.href ? 'text-primary-500' : 'text-gray-400 group-hover:text-gray-500',
                   'mr-3 flex-shrink-0 h-6 w-6'
                 )}
                 aria-hidden="true"

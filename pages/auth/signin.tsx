@@ -27,7 +27,7 @@ export default function SimpleCard() {
 
     let defaultBody = {
         grant_type: "",
-        username: "asdf@gmail.com",
+        username: "asdf",
         password: "asdf",
         scope: "",
         client_id: "",
@@ -61,7 +61,7 @@ export default function SimpleCard() {
                 <form className="w-full" onSubmit={handleSubmit(onSubmit)}>
                     <div className="flex flex-col w-full space-y-2">
                         <label htmlFor="email" className="text-base">Email</label>
-                        <input id="email" type="email" className="input-primary" {...register("username")} />
+                        <input id="username" type="username" className="input-primary" {...register("username")} />
                         <label htmlFor="password" className="text-base">Passwort</label>
                         <div className="flex">
                             <input id="password" type={showPassword ? "text" : "password"} className="input-primary" {...register("password")} />

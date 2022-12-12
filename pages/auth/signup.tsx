@@ -38,7 +38,6 @@ export default function SignupCard() {
         <div>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <input type="text" {...register("name")} />
-                <input type="email" {...register("email")} />
                 <input type={showPassword ? "text" : "password"} {...register("password")} />
                 <button onClick={() => setShowPassword((showPassword) => !showPassword,)}>Passwort anzeigen</button>
                 <button type="submit">Sign up</button>

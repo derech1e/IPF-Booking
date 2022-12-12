@@ -4,6 +4,27 @@ import Layout from '../components/Layout'
 import Employee, { EmployeeProps } from '../components/Employee'
 import { makeSerializable } from '../lib/util'
 import prisma from '../lib/prisma'
+import { getSession } from 'next-auth/react'
+
+export async function getServerSideProps(req) {
+  const session = await getSession(req)
+  if (!session) {
+      return {
+          redirect: {
+              destination: '/api/auth/signin',
+              permanent: false,
+          },
+      }
+  }
+
+  const feed = await prisma.employee.findMany({
+    //where: { published: true },
+    //include: { author: true },
+  })
+  return {
+    props: { feed: makeSerializable(feed) },
+  }
+}
 
 type Props = {
   feed: EmployeeProps[]
@@ -38,16 +59,6 @@ const Blog: React.FC<Props> = props => {
       `}</style>
     </Layout>
   )
-}
-
-export const getServerSideProps: GetServerSideProps = async () => {
-  const feed = await prisma.employee.findMany({
-    //where: { published: true },
-    //include: { author: true },
-  })
-  return {
-    props: { feed: makeSerializable(feed) },
-  }
 }
 
 export default Blog
