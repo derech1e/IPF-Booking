@@ -1,69 +1,30 @@
-import React from 'react'
-import Link from 'next/link'
-import { useRouter } from 'next/router'
+// Header.tsx
+import React, { useEffect } from 'react';
+import { useRouter } from 'next/router';
+import { signOut, useSession } from 'next-auth/react';
 
-const Header: React.FC = () => {
-  const router = useRouter()
-  const isActive: (pathname: string) => boolean =
-    pathname => router.pathname === pathname
+export default function Header() {
+  const router = useRouter();
+
+  const isActive: (pathname: string) => boolean = (pathname) =>
+    router.pathname === pathname;
+
+  const { data: session, status } = useSession();
+
+  useEffect(() => {
+    if (!session) {
+      router.push("/api/auth/signin")
+    }
+  });
 
   return (
-    <nav>
-      <div className="left">
-        <Link href="/" legacyBehavior>
-          <a className="bold" data-active={isActive('/')}>
-            Blog
-          </a>
-        </Link>
-        <Link href="/drafts" legacyBehavior>
-          <a data-active={isActive('/drafts')}>Drafts</a>
-        </Link>
-      </div>
-      <div className="right">
-        <Link href="/signup" legacyBehavior>
-          <a data-active={isActive('/signup')}>Signup</a>
-        </Link>
-        <Link href="/createPerson" legacyBehavior>
-          <a data-active={isActive('/createPerson')}>+ Create Person</a>
-        </Link>
-      </div>
-      <style jsx>{`
-        nav {
-          display: flex;
-          padding: 2rem;
-          align-items: center;
-        }
-
-        .bold {
-          font-weight: bold;
-        }
-
-        a {
-          text-decoration: none;
-          color: #000;
-          display: inline-block;
-        }
-
-        .left a[data-active='true'] {
-          color: gray;
-        }
-
-        a + a {
-          margin-left: 1rem;
-        }
-
-        .right {
-          margin-left: auto;
-        }
-
-        .right a {
-          border: 1px solid black;
-          padding: 0.5rem 1rem;
-          border-radius: 3px;
-        }
-      `}</style>
-    </nav>
-  );
+    <div>
+      Header
+    </div>
+  )
 }
 
-export default Header
+function componentDidMount() {
+  throw new Error('Function not implemented.');
+}
+

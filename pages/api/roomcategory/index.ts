@@ -4,15 +4,11 @@ import prisma from '../../../lib/prisma'
 
 // POST /api/booking
 export default async function handle(req: NextApiRequest, res: NextApiResponse) {
-    const { title, comment, room, from, until, employee } = req.body
-    const result = await prisma.booking.create({
+    const { title, comment } = req.body
+    const result = await prisma.roomCategory.create({
         data: {
-            title: title,
+            name: title,
             comment: comment,
-            from: from,
-            until: until,
-            employee: { connect: { id: employee } },
-            room: { connect: { id: room } },
         },
     })
     res.json(result)

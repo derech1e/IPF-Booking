@@ -18,7 +18,7 @@ CREATE TABLE "new_Booking" (
     "until" DATETIME NOT NULL,
     "comment" TEXT,
     CONSTRAINT "Booking_roomid_fkey" FOREIGN KEY ("roomid") REFERENCES "Room" ("id") ON DELETE SET NULL ON UPDATE CASCADE,
-    CONSTRAINT "Booking_personid_fkey" FOREIGN KEY ("personid") REFERENCES "Person" ("id") ON DELETE SET NULL ON UPDATE CASCADE
+    CONSTRAINT "Booking_personid_fkey" FOREIGN KEY ("personid") REFERENCES "Employee" ("id") ON DELETE SET NULL ON UPDATE CASCADE
 );
 INSERT INTO "new_Booking" ("comment", "createdAt", "from", "id", "personid", "roomid", "until", "updatedAt") SELECT "comment", "createdAt", "from", "id", "personid", "roomid", "until", "updatedAt" FROM "Booking";
 DROP TABLE "Booking";

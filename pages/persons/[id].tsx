@@ -3,7 +3,7 @@ import { GetServerSideProps } from 'next'
 import ReactMarkdown from 'react-markdown'
 import Layout from '../../components/Layout'
 import Router from 'next/router'
-import { PersonProps } from '../../components/Person'
+import { PersonProps } from '../../components/Employee'
 import { makeSerializable } from '../../lib/util'
 import prisma from '../../lib/prisma'
 
@@ -14,7 +14,7 @@ async function destroy(id: number): Promise<void> {
   await Router.push('/')
 }
 
-const Person: React.FC<PersonProps> = props => {
+const Employee: React.FC<PersonProps> = props => {
   let name = props.firstname + " " + props.lastname;
 
   return (
@@ -58,4 +58,4 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   return { props: { ...makeSerializable(person) } }
 }
 
-export default Person
+export default Employee

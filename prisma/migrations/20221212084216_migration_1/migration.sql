@@ -17,11 +17,11 @@ CREATE TABLE "Booking" (
     "until" DATETIME NOT NULL,
     "comment" TEXT,
     CONSTRAINT "Booking_roomid_fkey" FOREIGN KEY ("roomid") REFERENCES "Room" ("id") ON DELETE SET NULL ON UPDATE CASCADE,
-    CONSTRAINT "Booking_personid_fkey" FOREIGN KEY ("personid") REFERENCES "Person" ("id") ON DELETE SET NULL ON UPDATE CASCADE
+    CONSTRAINT "Booking_personid_fkey" FOREIGN KEY ("personid") REFERENCES "Employee" ("id") ON DELETE SET NULL ON UPDATE CASCADE
 );
 
 -- CreateTable
-CREATE TABLE "Person" (
+CREATE TABLE "Employee" (
     "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
     "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" DATETIME NOT NULL

@@ -22,8 +22,8 @@ CREATE TABLE "new_Person" (
     "personcategoryid" INTEGER,
     CONSTRAINT "Person_personcategoryid_fkey" FOREIGN KEY ("personcategoryid") REFERENCES "PersonCategory" ("id") ON DELETE SET NULL ON UPDATE CASCADE
 );
-INSERT INTO "new_Person" ("createdAt", "firstname", "id", "lastname", "updatedAt") SELECT "createdAt", "firstname", "id", "lastname", "updatedAt" FROM "Person";
-DROP TABLE "Person";
-ALTER TABLE "new_Person" RENAME TO "Person";
+INSERT INTO "new_Person" ("createdAt", "firstname", "id", "lastname", "updatedAt") SELECT "createdAt", "firstname", "id", "lastname", "updatedAt" FROM "Employee";
+DROP TABLE "Employee";
+ALTER TABLE "new_Person" RENAME TO "Employee";
 PRAGMA foreign_key_check;
 PRAGMA foreign_keys=ON;

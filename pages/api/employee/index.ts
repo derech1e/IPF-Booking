@@ -5,7 +5,7 @@ import prisma from '../../../lib/prisma'
 // POST /api/booking
 export default async function handle(req: NextApiRequest, res: NextApiResponse) {
     const { firstname, lastname, comment } = req.body
-    const result = await prisma.person.create({
+    const result = await prisma.employee.create({
         data: {
             firstname: firstname,
             lastname: lastname,

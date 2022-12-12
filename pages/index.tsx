@@ -1,12 +1,12 @@
 import React from 'react'
 import { GetServerSideProps } from 'next'
 import Layout from '../components/Layout'
-import Person, { PersonProps } from '../components/Person'
+import Employee, { EmployeeProps } from '../components/Employee'
 import { makeSerializable } from '../lib/util'
 import prisma from '../lib/prisma'
 
 type Props = {
-  feed: PersonProps[]
+  feed: EmployeeProps[]
 }
 
 const Blog: React.FC<Props> = props => {
@@ -15,9 +15,9 @@ const Blog: React.FC<Props> = props => {
       <div className="page">
         <h1>My Blog</h1>
         <main>
-          {props.feed.map(person => (
-            <div key={person.id} className="post">
-              <Person person={person} />
+          {props.feed.map(employee => (
+            <div key={employee.id} className="post">
+              <Employee employee={employee} />
             </div>
           ))}
         </main>
@@ -41,7 +41,7 @@ const Blog: React.FC<Props> = props => {
 }
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  const feed = await prisma.person.findMany({
+  const feed = await prisma.employee.findMany({
     //where: { published: true },
     //include: { author: true },
   })
