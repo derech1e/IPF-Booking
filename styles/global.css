@@ -1,3 +1,43 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+input {
+    @apply outline-none px-3 py-2 ring-gray-600 w-full text-base;
+    transition: background 200ms ease;
+}
+
+.input-primary {
+    @apply bg-gray-100 hover:bg-gray-200 focus:bg-gray-200 border-b-2 border-b-primary-500;
+}
+
+button {
+    @apply outline-none px-4 py-2;
+    transition: background 200ms ease;
+}
+
+.button-primary {
+    @apply bg-primary-500 hover:bg-primary-400 text-white
+}
+
+.button-secondary {
+    @apply bg-secondary-500 hover:bg-secondary-400 text-white
+}
+
+.button-gray {
+    @apply bg-gray-100 hover:bg-gray-200 text-white
+}
+
+.button-icon {
+    @apply p-2 bg-gray-100 hover:bg-gray-200;
+}
+
+.link-primary{
+    background: linear-gradient(currentColor 0 0) 0 100% /var(--d, 0) 2px no-repeat;
+    transition: background .2s ease-in;
+    text-decoration: none !important
+}
+
+.link-primary:hover {
+    --d: 100%
+}
