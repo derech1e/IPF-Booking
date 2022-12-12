@@ -1,4 +1,4 @@
-# Fullstack Room-Booking Software
+# Fullstack Room-Usage Software
 
 [![nextjs](https://img.shields.io/npm/v/next?color=black&label=Next)](NEXTJS)
 [![nextjs](https://img.shields.io/npm/v/react?color=blue&label=React)](NEXTJS)
