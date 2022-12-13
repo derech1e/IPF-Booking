@@ -9,7 +9,7 @@ export type EmployeeProps = {
   comment: string;
 }
 //<!--<ReactMarkdown children={post.content} />-->
-const Post: React.FC<{employee: EmployeeProps}> = ({ employee }) => {
+const Employee: React.FC<{employee: EmployeeProps}> = ({ employee }) => {
   return (
     <div onClick={() => Router.push('/persons/[id]', `/persons/${employee.id}`)}>
         <h2>{employee.firstname + " " + employee.lastname}</h2>
@@ -17,4 +17,4 @@ const Post: React.FC<{employee: EmployeeProps}> = ({ employee }) => {
   )
 }
 
-export default Post
+export default Employee

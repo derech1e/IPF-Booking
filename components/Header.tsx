@@ -10,7 +10,7 @@ import Logo from "../public/logo-ipfdd-big.jpg"
 
 const navigation = [
   { name: 'Übersicht', icon: HomeIcon, href: '/' },
-  { name: 'Team', icon: UsersIcon, href: '/'},
+  { name: 'Räume', icon: UsersIcon, href: '/rooms'},
 ]
 
 function classNames(...classes) {

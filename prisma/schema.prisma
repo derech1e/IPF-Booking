@@ -29,30 +29,34 @@ model Post {
 }
 
 model Room {
-  id              Int           @id @default(autoincrement())
-  createdAt       DateTime      @default(now())
-  updatedAt       DateTime      @updatedAt
-  name            String        @unique
-  roomcategory    RoomCategory? @relation(fields: [roomcategoryid], references: [id])
-  roomcategoryid  Int?
-  primaryplaces   Int
-  secondaryplaces Int
-  bookings        Booking[]
-  comment         String?
+  id                 Int           @id @default(autoincrement())
+  createdAt          DateTime      @default(now())
+  updatedAt          DateTime      @updatedAt
+  name               String        @unique
+  roomcategory       RoomCategory? @relation(fields: [roomcategoryid], references: [id])
+  roomcategoryid     Int?
+  primaryplaces      Int
+  secondaryplaces    Int
+  bookings           Booking[]
+  occupancyPriamry   Int?
+  occupancySecondary Int?
+  occupancy          Int?
+  comment            String?
 }
 
 model Booking {
-  id         Int       @id @default(autoincrement())
-  createdAt  DateTime  @default(now())
-  updatedAt  DateTime  @updatedAt
-  title      String    @unique
-  room       Room?     @relation(fields: [roomid], references: [id])
-  roomid     Int?
-  employee   Employee? @relation(fields: [employeeid], references: [id])
-  employeeid Int?
-  from       DateTime
-  until      DateTime
-  comment    String?
+  id             Int       @id @default(autoincrement())
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+  title          String    @unique
+  room           Room?     @relation(fields: [roomid], references: [id])
+  roomid         Int?
+  employee       Employee? @relation(fields: [employeeid], references: [id])
+  secondaryPlace Boolean?
+  employeeid     Int?
+  from           DateTime
+  until          DateTime
+  comment        String?
 }
 
 model Employee {

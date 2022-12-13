@@ -41,3 +41,8 @@ button {
 .link-primary:hover {
     --d: 100%
 }
+
+.record-overview {
+    @apply border border-gray-100 bg-white w-1/12 min-w-fit p-5 hover:cursor-pointer hover:bg-gray-50 hover:-translate-y-1;
+    transition: transform 200ms ease, background 200ms ease;
+}

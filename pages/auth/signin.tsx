@@ -19,8 +19,6 @@ export default function SimpleCard() {
         ]
     }
 
-
-
     const {
         handleSubmit,
         register,
@@ -63,21 +61,21 @@ export default function SimpleCard() {
             <div className="flex justify-center flex-col w-64">
                 <form className="w-full" onSubmit={handleSubmit(onSubmit)}>
                     <div className="flex flex-col w-full space-y-2">
-                        <label htmlFor="email" className="text-base">Email</label>
+                        <label htmlFor="text" className="text-base">Benutzername</label>
                         <input id="username" type="username" className="input-primary" {...register("username")} />
                         <label htmlFor="password" className="text-base">Passwort</label>
                         <div className="flex">
                             <input id="password" type={showPassword ? "text" : "password"} className="input-primary" {...register("password")} />
                             <button type="button" className="button-icon" onClick={handlePasswordShowClick}>{showPassword ? <XMarkIcon className="h-5" /> : <EyeIcon className="h-5" />}</button>
                         </div>
+                        <button type="submit" className="button-primary">Anmelden</button>
                         {router.query.error &&
                         
                             router.query.error === "CredentialsSignin" && (
-                                <div>
-                                    Invalid credentials
+                                <div className="text-center font-bold text-red-500">
+                                    Ungültige Logindaten
                                 </div>
                             ) }
-                        <button type="submit" className="button-primary">Anmelden</button>
                     </div>
                 </form>
             </div>
