@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import { EyeIcon, XMarkIcon } from "@heroicons/react/24/outline"
+import { toast } from "react-toastify";
 
 export default function SimpleCard() {
     const [showPassword, setShowPassword] = useState(false);
@@ -17,6 +18,8 @@ export default function SimpleCard() {
             setShowPassword(true)
         ]
     }
+
+
 
     const {
         handleSubmit,
@@ -68,11 +71,12 @@ export default function SimpleCard() {
                             <button type="button" className="button-icon" onClick={handlePasswordShowClick}>{showPassword ? <XMarkIcon className="h-5" /> : <EyeIcon className="h-5" />}</button>
                         </div>
                         {router.query.error &&
+                        
                             router.query.error === "CredentialsSignin" && (
                                 <div>
                                     Invalid credentials
                                 </div>
-                            )}
+                            ) }
                         <button type="submit" className="button-primary">Anmelden</button>
                     </div>
                 </form>
