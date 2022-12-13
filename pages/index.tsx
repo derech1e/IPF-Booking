@@ -32,9 +32,8 @@ type Props = {
 
 const Blog: React.FC<Props> = props => {
   return (
-    <Layout>
+    <Layout title="Übersicht">
       <div className="page">
-        <h1>My Blog</h1>
         <main>
           {props.feed.map(employee => (
             <div key={employee.id} className="post">
