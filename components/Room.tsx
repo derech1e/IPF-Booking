@@ -12,6 +12,17 @@ export type RoomProps = {
     occupancy: number;
 }
 
+export const emptyRoomObject: RoomProps = {
+    id: 0,
+    name: '',
+    primaryplaces: 0,
+    secondaryplaces: 0,
+    comment: '',
+    occupancyPriamry: 0,
+    occupancySecondary: 0,
+    occupancy: 0
+}
+
 const Room: React.FC<{ room: RoomProps }> = ({ room }) => {
     return (
         <div onClick={() => Router.push('/persons/[id]', `/persons/${room.id}`)}>

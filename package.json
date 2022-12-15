@@ -12,6 +12,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "@headlessui/react": "^1.7.5",
     "@heroicons/react": "^2.0.13",
     "@mdx-js/loader": "^2.1.5",
     "@mdx-js/react": "^2.1.5",
