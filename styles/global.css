@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+html{
+   @apply text-black
+}
+
 input {
     @apply outline-none px-3 py-2 ring-gray-600 w-full text-base;
     transition: background 200ms ease;
@@ -12,12 +16,12 @@ input {
 }
 
 button {
-    @apply outline-none px-4 py-2;
+    @apply outline-none px-4 py-2 disabled:bg-gray-100 disabled:text-black disabled:hover:bg-gray-100;
     transition: background 200ms ease;
 }
 
 .button-primary {
-    @apply bg-primary-500 hover:bg-primary-400 text-white
+    @apply bg-primary-500 hover:bg-primary-400 text-white;
 }
 
 .button-secondary {

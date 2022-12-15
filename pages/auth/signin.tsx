@@ -28,8 +28,8 @@ export default function SimpleCard() {
 
     let defaultBody = {
         grant_type: "",
-        username: "asdf",
-        password: "asdf",
+        username: "username",
+        password: "password",
         scope: "",
         client_id: "",
         client_secret: "",
