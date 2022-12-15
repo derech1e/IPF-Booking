@@ -1,10 +1,10 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { GetServerSideProps } from 'next'
 import Layout from '../../components/Layout'
 import Room, { RoomProps } from '../../components/Room'
 import { makeSerializable } from '../../lib/util'
 import prisma from '../../lib/prisma'
-import { getSession } from 'next-auth/react'
+import { getSession, useSession } from 'next-auth/react'
 
 export async function getServerSideProps(req) {
     const session = await getSession(req)
@@ -21,12 +21,10 @@ export async function getServerSideProps(req) {
         //where: { published: true },
         //include: { author: true },
     })
+
     return {
         props: { feed: makeSerializable(feed) },
     }
-}
-
-async function handleSearch(feed: RoomProps[], searchKey: string){
 }
 
 type Props = {
@@ -34,15 +32,23 @@ type Props = {
 }
 
 const Rooms: React.FC<Props> = props => {
+    const[search, setSearch] = useState("")
+
+    function handleSearchInput(event: { target: { value: React.SetStateAction<string> } }){
+        setSearch(event.target.value)
+    }
+
     return (
         <Layout title="Räume">
             <div>
                 <main>
-                    <input type="text" className='input-primary'/>
-                    <div className='flex flex-row space-x-4'>
-                        {props.feed.map(room => (
-                            <div key={room.id} className="record-overview">
-                                <Room room={room} />
+                    <div>
+                        <input id="search" type="text" placeholder='Suche' className='input-primary' value={search} onChange={(e) => handleSearchInput(e)}/>
+                    </div>
+                    <div className='flex flex-row space-x-4 pt-10'>
+                        {props.feed.filter(room => room.name.toLowerCase().includes(search.toLowerCase())).map(filteredRoom => (
+                            <div key={filteredRoom.id} className="record-overview">
+                                <Room room={filteredRoom} />
                             </div>
                         ))}
                     </div>
